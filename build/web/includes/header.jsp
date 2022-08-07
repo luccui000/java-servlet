@@ -1,3 +1,5 @@
+<%@page import="com.lucui.models.DanhMuc"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <header class="header-style-1">
   <!-- ============================================== TOP MENU ============================================== -->
   <div class="top-bar animate-dropdown">
@@ -7,28 +9,23 @@
           <ul class="list-unstyled">
             <li class="myaccount">
               <a href="#">
-                <span>My Account</span>
+                <span>Tài khoản của tôi</span>
               </a>
-            </li>
-            <li class="wishlist">
-              <a href="#">
-                <span>Wishlist</span>
-              </a>
-            </li>
+            </li> 
             <li class="header_cart hidden-xs">
               <a href="#">
-                <span>My Cart</span>
+                <span>Giỏ hàng</span>
               </a>
             </li>
             <li class="check">
               <a href="#">
-                <span>Checkout</span>
+                <span>Thanh toán</span>
               </a>
               </span>
             </li>
             <li class="login">
               <a href="#">
-                <span>Login</span>
+                <span>Đăng nhập</span>
               </a>
             </li>
           </ul>
@@ -38,35 +35,35 @@
           <ul class="list-unstyled list-inline">
             <li class="dropdown dropdown-small">
               <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
-                <span class="value">USD </span>
+                <span class="value">VND </span>
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="#">USD</a>
+                  <a href="#">VND</a>
                 </li>
                 <li>
-                  <a href="#">INR</a>
+                  <a href="#">VND</a>
                 </li>
                 <li>
-                  <a href="#">GBP</a>
+                  <a href="#">VND</a>
                 </li>
               </ul>
             </li>
             <li class="dropdown dropdown-small">
               <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
-                <span class="value">English </span>
+                <span class="value">Việt Nam </span>
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="#">English</a>
+                  <a href="#">Việt Nam</a>
                 </li>
                 <li>
-                  <a href="#">French</a>
+                  <a href="#">Việt Nam</a>
                 </li>
                 <li>
-                  <a href="#">German</a>
+                  <a href="#">Việt Nam</a>
                 </li>
               </ul>
             </li>
@@ -79,62 +76,46 @@
       <!-- /.header-top-inner -->
     </div>
     <!-- /.container -->
-  </div>
-  <!-- /.header-top -->
-  <!-- ============================================== TOP MENU : END ============================================== -->
+  </div> 
   <div class="main-header">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
-          <!-- ============================================================= LOGO ============================================================= -->
+        <div class="col-xs-12 col-sm-12 col-md-3 logo-holder"> 
           <div class="logo">
-            <a href="home.html">
+              <a href="<%= request.getContextPath() %>">
               <img src="assets/images/logo.png" alt="logo">
             </a>
           </div>
-          <!-- /.logo -->
-          <!-- ============================================================= LOGO : END ============================================================= -->
-        </div>
-        <!-- /.logo-holder -->
+        </div> 
         <div class="col-lg-7 col-md-6 col-sm-8 col-xs-12 top-search-holder">
-          <!-- /.contact-row -->
-          <!-- ============================================================= SEARCH AREA ============================================================= -->
-          <div class="search-area">
+            <div class="search-area">
             <form>
               <div class="control-group">
                 <ul class="categories-filter animate-dropdown">
-                  <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="category.html">Categories <b class="caret"></b>
+                  <li class="dropdown"> 
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Danh mục <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                      <li class="menu-header">Computer</li>
-                      <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="category.html">- Clothing</a>
-                      </li>
-                      <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="category.html">- Electronics</a>
-                      </li>
-                      <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="category.html">- Shoes</a>
-                      </li>
-                      <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="category.html">- Watches</a>
-                      </li>
+                        <jsp:useBean id="dm" class="com.luccui.dao.impl.DanhMucDAOImpl" /> 
+                        <%
+                            for(DanhMuc d : dm.all()) {
+                                out.print("<li role='presentation'>");
+                                    out.print("<a role='menuitem' tabindex='-1' href=''>" + d.getTenDanhMuc() + " </a>");
+                                out.print("</li>");
+                            }
+                        %> 
                     </ul>
                   </li>
                 </ul>
-                <input class="search-field" placeholder="Search here..." />
+                <input class="search-field" placeholder="Nhập vào từ khóa cần tìm kiếm..." />
                 <a class="search-button" href="#"></a>
               </div>
             </form>
-          </div>
-          <!-- /.search-area -->
-          <!-- ============================================================= SEARCH AREA : END ============================================================= -->
-        </div>
-        <!-- /.top-search-holder -->
+          </div> 
+        </div> 
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 animate-dropdown top-cart-row">
-          <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
-          <div class="dropdown dropdown-cart">
+           <div class="dropdown dropdown-cart">
             <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
               <div class="items-cart-inner">
                 <div class="basket">
@@ -142,7 +123,7 @@
                     <span class="count">2</span>
                   </div>
                   <div class="total-price-basket">
-                    <span class="lbl">Shopping Cart</span>
+                    <span class="lbl">Giỏ hàng</span>
                     <span class="value">$4580</span>
                     </span>
                   </div>

@@ -9,12 +9,9 @@ public class Item {
     public Item() {}
     public Item(SanPham sanpham, int SoLuong) {
         this.sanPham = sanpham;
-        this.SoLuong = SoLuong;
+        this.SoLuong = SoLuong; 
     }
-    
-    public void increment() {
-        this.SoLuong++;
-    }
+     
     public SanPham getSanPham() {
         return sanPham;
     }

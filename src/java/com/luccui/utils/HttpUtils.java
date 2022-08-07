@@ -10,4 +10,7 @@ public class HttpUtils {
         String contextPath = request.getContextPath();
         return scheme + serverName + serverPort + contextPath;
     }
+    public static String baseUrl(HttpServletRequest request) {
+        return HttpUtils.Url(request);
+    }
 }
