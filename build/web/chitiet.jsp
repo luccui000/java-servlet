@@ -67,8 +67,7 @@
                                                 </div> 
                                             </div>
                                         </div>  
-                                    </div>   
-                                    <!-- /.gallery-thumbs -->
+                                    </div>    
                                 </div> 
                             </div> 
                             <div class="col-sm-12 col-md-8 col-lg-8 product-info-block">
@@ -113,16 +112,20 @@
                                         </div> 
                                     </div> 
                                     <hr />
-                                    <div class="quantity-container">
-                                        <div class="qty-count">
-                                            <input class="form-control input-qty" type="number" value="1" min="0" />
+                                    <form action="/gio-hang" method="GET">
+                                        <div class="quantity-container">
+                                            <div class="qty-count">
+                                                <input class="form-control input-qty" type="number" value="1" min="0" />
+                                            </div>
+                                            <div class="add-btn">
+                                                <input name="action" value="addToCart" type="hidden" />
+                                                <input name="id" value='<% out.print((request.getParameter("id") != null) ? request.getParameter("id") : "");  %>' type="hidden" />
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa fa-shopping-cart inner-right-vs"></i> THÊM VÀO GIỎ HÀNG 
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="add-btn">
-                                            <a href="#" class="btn btn-primary">
-                                                <i class="fa fa-shopping-cart inner-right-vs"></i> THÊM VÀO GIỎ HÀNG 
-                                            </a>
-                                        </div>
-                                    </div> 
+                                    </form> 
                                 </div> 
                             </div> 
                         </div> 

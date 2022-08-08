@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Trang chủ</title>
+        <title>Trang giỏ hàng</title>
         <link rel="stylesheet" href="./assets/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="./assets/css/main.css"/>
         <link rel="stylesheet" href="./assets/css/blue.css"/>
@@ -44,192 +44,293 @@
     </head>
     <body class="cnt-home"> 
         <jsp:include page="includes/header.jsp" ></jsp:include>
-        <div class="body-content outer-top-vs" id="top-banner-and-menu">
-        <div class="container">
-            <div class="row">  
-                <div class="col-xs-12 col-sm-12 col-md-3 sidebar">  
-                    <jsp:include page="includes/sidebar.jsp" ></jsp:include> 
+        <div class="body-content outer-top-vs">
+            <div class="container">
+                <div class="panel">
+                    <div class="panel-body">
+                         <div class="breadcrumb-inner">
+                            <ul class="list-inline list-unstyled">
+                                <li><a href="<%= request.getContextPath() %>/">Trang chủ</a></li>
+                                <li class="active">Giỏ hàng</li>
+                            </ul>
+                        </div>                   
+                    </div>
                 </div> 
-                <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
-                    <div class="detail-block">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 gallery-holder">
-                                <div class="product-item-holder size-big single-product-gallery small-gallery">
-                                    <div id="owl-single-product" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
-                                        <div class="owl-wrapper-outer">
-                                            <div class="owl-wrapper" style="width: 6084px; left: 0px; display: block; transform: translate3d(0px, 0px, 0px); transition: all 200ms ease 0s;">
-                                                <div class="owl-item" style="width: 338px;">
-                                                    <div class="single-product-gallery-item" id="slide1">
-                                                        <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p1.jpg">
-                                                            <img class="img-responsive" alt="" src='<c:out value="${sanpham.getHinhAnh()}" />' >
-                                                        </a>
+            </div>
+        </div>
+        <div class="body-content" style="margin-top: 20px;">
+            <div class="container">
+                <div class="checkout-box ">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-9 col-md-9 rht-col">
+                            <div class="panel-group checkout-steps" id="accordion">
+                                <!-- checkout-step-01  -->
+                                <div class="panel panel-default checkout-step-01">
+                                    <!-- panel-heading -->
+                                    <div class="panel-heading">
+                                        <h4 class="unicase-checkout-title">
+                                            <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseOne">
+                                                <span>1</span>
+                                                Thông tin tài khoản
+                                            </a>
+                                        </h4>
+                                    </div> 
+                                    <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;"> 
+                                        <div class="panel-body">
+                                            <div class="row"> 
+                                                <div class="col-md-6 col-sm-6 guest-login">
+                                                    <h4 class="checkout-subtitle">Đăng nhập tài khoản</h4>  
+                                                    <form class="register-form" role="form">
+                                                        <div class="radio radio-checkout-unicase">
+                                                            <input id="guest" type="radio" name="text" value="guest" checked="">
+                                                            <label class="radio-button guest-check" for="guest">Đăng ký khách</label>
+                                                            <br>
+                                                            <input id="register" type="radio" name="text" value="register">
+                                                            <label class="radio-button" for="register">Đăng ký</label>
+                                                        </div>
+                                                    </form> 
+                                                    <h4 class="checkout-subtitle outer-top-vs"></h4> 
+                                                    <button type="submit" class="btn-upper btn btn-primary checkout-page-button checkout-continue ">Tiếp tục</button>
+                                                </div> 
+                                                <div class="col-md-6 col-sm-6 already-registered-login">
+                                                    <h4 class="checkout-subtitle">Bạn đã có tài khoản ?</h4>
+                                                    <p class="text title-tag-line">Vui lòng đăng nhập ở phía dưới:</p>
+                                                    <form class="register-form" role="form">
+                                                        <div class="form-group">
+                                                            <label class="info-title" for="exampleInputEmail1">Email <span>*</span>
+                                                            </label>
+                                                            <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="info-title" for="exampleInputPassword1">Mật khẩu <span>*</span>
+                                                            </label>
+                                                            <input type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" placeholder="">
+                                                            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+                                                        </div>
+                                                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Đăng nhập</button>
+                                                    </form>
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                </div> 
+                                <div class="panel panel-default checkout-step-02">
+                                    <div class="panel-heading">
+                                        <h4 class="unicase-checkout-title">
+                                            <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseTwo">
+                                                <span>2</span>
+                                                Thông tin nhận hàng
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="">Họ tên nhận hàng<span>*</span></label>
+                                                        <input name="ho_ten" type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" placeholder=""> 
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="">Số điện thoại<span>*</span></label>
+                                                        <input name="so_dien_thoai" type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" placeholder=""> 
                                                     </div>
                                                 </div> 
                                             </div>
-                                        </div>  
-                                    </div>   
-                                    <!-- /.gallery-thumbs -->
-                                </div> 
-                            </div> 
-                            <div class="col-sm-12 col-md-8 col-lg-8 product-info-block">
-                                <div class="product-info">
-                                    <h1 class="name"><c:out value="${sanpham.getTenSanPham()}" /></h1>
-                                      
-                                    <div class="stock-container info-container m-t-10">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="pull-left">
-                                                    <div class="stock-box">
-                                                        <span class="">Trạng thái: </span>
-                                                    </div>
-                                                </div>
-                                                <div class="pull-left">
-                                                    <div class="stock-box">
-                                                        <span class="value">Còn hàng</span>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="">Ghi chú nhận hàng<span>*</span></label>
+                                                        <textarea name="ghi_chu" type="password" class="form-control unicase-form-control text-input" placeholder=""></textarea>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </div>
-                                    <!-- /.stock-container -->
-                                    <div class="description-container m-t-20">
-                                        <p><c:out value="${sanpham.getMoTa()}" /></p> 
+                                </div> 
+                                <div class="panel panel-default checkout-step-03">
+                                    <div class="panel-heading">
+                                        <h4 class="unicase-checkout-title">
+                                            <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseThree">
+                                                <span>3</span>Thông tin địa chỉ </a>
+                                        </h4>
                                     </div>
-                                    <hr />
-                                    <div class="price-container info-container m-t-30">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-xs-6">
-                                                <div class="price-box">
-                                                    <span class="price">
-                                                        <% out.print(CurrencyFormat.VND(((SanPham)request.getAttribute("sanpham")).getGiaKM()).substring(4)); %>đ
-                                                    </span>
-                                                    <span class="price-strike">
-                                                        <del>
-                                                            <% out.print(CurrencyFormat.VND(((SanPham)request.getAttribute("sanpham")).getGia()).substring(4)); %>đ
-                                                        </del>
-                                                    </span>
+                                    <div id="collapseThree" class="panel-collapse collapse" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Tỉnh/Thành phố</label>
+                                                        <select name="tinh" class="form-control unicase-form-control text-input">
+                                                            <option>1</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div> 
-                                        </div> 
-                                    </div> 
-                                    <hr />
-                                    <div class="quantity-container">
-                                        <div class="qty-count">
-                                            <input class="form-control input-qty" type="number" value="1" min="0" />
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Quận/Huyện</label>
+                                                        <select name="huyen" class="form-control unicase-form-control text-input"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Phường xã</label>
+                                                        <select name="xa" class="form-control unicase-form-control text-input"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="">Chi tiết địa chỉ<span>*</span></label>
+                                                        <input name="dia_chi" type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" placeholder=""> 
+                                                    </div>
+                                                </div> 
+                                            </div>
                                         </div>
-                                        <div class="add-btn">
-                                            <a href="#" class="btn btn-primary">
-                                                <i class="fa fa-shopping-cart inner-right-vs"></i> THÊM VÀO GIỎ HÀNG 
-                                            </a>
-                                        </div>
-                                    </div> 
+                                    </div>
                                 </div> 
                             </div> 
-                        </div> 
-                    </div>
-                    <div class="row mt-2" style="margin-top: 20px;">
-                        <ul class="nav nav-tabs">
-                            <li class="active">
-                                <a data-toggle="tab" href="#home">Thông tin sản phẩm</a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#menu1">Mô tả chi tiết</a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#menu2">Chính sách và điều khoản</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" style="font-size: 15px">
-                            <div id="home" class="tab-pane fade in active" >
-                                <h3>Sản phẩm: <c:out value="${sanpham.getTenSanPham()}" /></h3>
-                                <p><c:out value="${sanpham.getMoTa()}" /></p>
-                            </div>
-                            <div id="menu1" class="tab-pane card fade">
-                                <h3>Chi tiết sản phẩm</h3>
-                                <p><c:out value="${sanpham.getMoTaChiTiet()}" /></p>
-                            </div>
-                            <div id="menu2" class="tab-pane card fade">
-                                <h3>Chính sách</h3>
-                                <p>Some content in menu 2.</p>
-                                <h3>Điều khoản</h3>
-                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="row" style="margin-top: 20px;">
-                        <div id="product-tabs-slider" class="scroll-tabs outer-top-vs">
-                            <div class="more-info-tab clearfix ">
-                                <h3 class="new-product-title pull-left">Sản phẩm liên quan</h3> 
-                            </div>
-                            <div class="tab-content outer-top-xs">
-                                <div class="tab-pane in active" id="all">
-                                    <div class="product-slider">
-                                        <div class="owl-carousel home-owl-carousel custom-carousel owl-theme"> 
-                                            <c:forEach var="splq" items="${sanphamlienquan}" >
-                                                <div class="item item-carousel">
-                                                    <div class="products">
-                                                        <div class="product">
-                                                            <div class="product-image">
-                                                                <div class="image">
-                                                                    <a href="detail.html">
-                                                                        <img src='<c:out value="${splq.getHinhAnh()}" />' alt=""> 
-                                                                    </a>
-                                                                </div> 
-                                                                <div class="tag new">
-                                                                    <span>new</span>
-                                                                </div>
-                                                            </div> 
-                                                            <div class="product-info text-left">
-                                                                <h3 class="name">
-                                                                    <a href="detail.html"><c:out value="${splq.getTenSanPham()}" /></a>
-                                                                </h3>
-                                                                <div class="rating rateit-small"></div>
-                                                                <div class="description"></div>
-                                                                <div class="product-price">
-                                                                    <span class="price">
-                                                                        <c:out value="${splq.getGia()}" />
-                                                                    </span>
-                                                                    <span class="price-before-discount">
-                                                                        <c:out value="${splq.getGia()}" />
-                                                                    </span>
-                                                                </div> 
-                                                            </div> 
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-                                                                    <ul class="list-unstyled">
-                                                                        <li class="add-cart-button btn-group">
-                                                                            <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart">
-                                                                                <i class="fa fa-shopping-cart"></i>
-                                                                            </button>
-                                                                            <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                                                                        </li>
-                                                                        <li class="lnk wishlist">
-                                                                            <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist">
-                                                                                <i class="icon fa fa-heart"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="lnk">
-                                                                            <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare">
-                                                                                <i class="fa fa-signal" aria-hidden="true"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div> 
-                                                            </div> 
-                                                        </div> 
-                                                    </div> 
-                                                </div>
-                                            </c:forEach>  
+                        <div class="col-xs-12 col-sm-3 col-md-3 sidebar">
+                            <!-- checkout-progress-sidebar -->
+                            <div class="checkout-progress-sidebar ">
+                                <div class="panel-group">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
+                                        </div>
+                                        <div class="">
+                                            <ul class="nav nav-checkout-progress list-unstyled">
+                                                <li>
+                                                    <a href="#">Billing Address</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Shipping Address</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Shipping Method</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Payment Method</a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- checkout-progress-sidebar -->
                         </div>
                     </div>
+                    <!-- /.row -->
                 </div>
-            </div> 
-        </div>
-           
+                <!-- /.checkout-box -->
+                <!-- ============================================== BRANDS CAROUSEL ============================================== -->
+                <div id="brands-carousel" class="logo-slider wow fadeInUp" style="visibility: hidden; animation-name: none;">
+                    <div class="logo-slider-inner">
+                        <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme" style="opacity: 1; display: block;">
+                            <div class="owl-wrapper-outer">
+                                <div class="owl-wrapper" style="width: 4680px; left: 0px; display: block;">
+                                    <div class="owl-item" style="width: 234px;">
+                                        <div class="item m-t-15">
+                                            <a href="#" class="image">
+                                                <img src="assets/images/brands/brand1.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 234px;">
+                                        <div class="item m-t-10">
+                                            <a href="#" class="image">
+                                                <img src="assets/images/brands/brand2.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 234px;">
+                                        <div class="item">
+                                            <a href="#" class="image">
+                                                <img src="assets/images/brands/brand3.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 234px;">
+                                        <div class="item">
+                                            <a href="#" class="image">
+                                                <img src="assets/images/brands/brand4.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 234px;">
+                                        <div class="item">
+                                            <a href="#" class="image">
+                                                <img src="assets/images/brands/brand5.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 234px;">
+                                        <div class="item">
+                                            <a href="#" class="image">
+                                                <img src="assets/images/brands/brand6.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 234px;">
+                                        <div class="item">
+                                            <a href="#" class="image">
+                                                <img src="assets/images/brands/brand2.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 234px;">
+                                        <div class="item">
+                                            <a href="#" class="image">
+                                                <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 234px;">
+                                        <div class="item">
+                                            <a href="#" class="image">
+                                                <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 234px;">
+                                        <div class="item">
+                                            <a href="#" class="image">
+                                                <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.item-->
+                            <!--/.item-->
+                            <!--/.item-->
+                            <!--/.item-->
+                            <!--/.item-->
+                            <!--/.item-->
+                            <!--/.item-->
+                            <!--/.item-->
+                            <!--/.item-->
+                            <!--/.item-->
+                            <div class="owl-controls clickable">
+                                <div class="owl-buttons">
+                                    <div class="owl-prev"></div>
+                                    <div class="owl-next"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.owl-carousel #logo-slider -->
+                    </div>
+                    <!-- /.logo-slider-inner -->
+                </div>
+                <!-- /.logo-slider -->
+                <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+            </div>
+            <!-- /.container -->
+        </div>   
         <script src="./assets/js/jquery-1.11.1.min.js"></script> 
         <script src="./assets/js/bootstrap.min.js"></script> 
         <script src="./assets/js/bootstrap-hover-dropdown.min.js"></script> 

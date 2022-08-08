@@ -17,40 +17,46 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "GioHangServlet", urlPatterns = {"/gio-hang"})
 public class GioHangServlet extends HttpServlet {
     private ISanPhamDAO sanphamDAO;
-    private IGioHangService gioHangService;
+//    private IGioHangService gioHangService;
     
     public GioHangServlet()
     {
         sanphamDAO = new SanPhamDAOImpl();
     }
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
+        
         if(action == null)
             index(request, response);
         else {
-            try (PrintWriter out = response.getWriter()) { 
-            }  
+            switch(action) {
+                case "addToCart":
+                    addToCart(request, response);
+                    
+                    break;
+                default:
+                    index(request, response);
+                    break;
+            }
         } 
     } 
     protected void index(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("giohang.jsp").forward(request, response);
         
-    } 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        int Id = Integer.parseInt(request.getParameter("id"));
-        SanPham sp = sanphamDAO.find(Id);
-        if(sp == null)
-            response.sendRedirect(HttpUtils.baseUrl(request));
-        gioHangService.them(Id, 1);
-    } 
+    }  
     private void addToCart(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try (PrintWriter out = response.getWriter()) { 
+        try (PrintWriter out = response.getWriter()) {
+            out.print("OKE");
+            int Id = Integer.parseInt(request.getParameter("id"));
+            SanPham sp = sanphamDAO.find(Id);
+            if(sp == null)
+                response.sendRedirect(HttpUtils.baseUrl(request));
+            out.print("OKE");
         }
     }
 }

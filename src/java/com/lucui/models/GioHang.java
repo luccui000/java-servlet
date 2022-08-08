@@ -13,17 +13,19 @@ public class GioHang implements IGioHangService {
             amount = 1;
         if(this.items == null)
             this.items = new HashMap<Integer, Integer>();
+         
         if(this.items.containsKey(Id)) {
-            int SoLuong = this.items.get(Id) + amount; 
-        } else {
-            this.items.put(Id, amount);
-        } 
+            amount += this.items.get(Id); 
+        }
+        this.items.put(Id, amount);
     } 
     public boolean xoa(Integer Id) 
     {
         if(!this.items.containsKey(Id))
             return false;
         this.items.remove(Id);
+        if(this.items.size() == 0)
+            this.items = null;
         return true;
     }
     public void writeCookie(Map<Integer, Item> mp)
