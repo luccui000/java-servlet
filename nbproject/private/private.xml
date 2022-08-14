@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/JAVAServlet/BaoCao/web/chitiet.jsp</file>
-            <file>file:/C:/JAVAServlet/BaoCao/src/java/com/luccui/dao/impl/SanPhamDAOImpl.java</file>
+            <file>file:/C:/JAVAServlet/BaoCao/src/java/com/luccui/servlets/DangKyServlet.java</file>
             <file>file:/C:/JAVAServlet/BaoCao/src/java/com/luccui/servlets/GioHangServlet.java</file>
-            <file>file:/C:/JAVAServlet/BaoCao/web/giohang.jsp</file>
-            <file>file:/C:/JAVAServlet/BaoCao/web/index.jsp</file>
-            <file>file:/C:/JAVAServlet/BaoCao/src/java/com/lucui/models/GioHang.java</file>
-            <file>file:/C:/JAVAServlet/BaoCao/src/java/com/luccui/services/interfaces/IGioHangService.java</file>
-            <file>file:/C:/JAVAServlet/BaoCao/web/includes/header.jsp</file>
-            <file>file:/C:/JAVAServlet/BaoCao/src/java/com/luccui/servlets/ChiTietSanPhamServlet.java</file>
+            <file>file:/C:/JAVAServlet/BaoCao/src/java/com/luccui/servlets/DanhSachSanPhamServlet.java</file>
+            <file>file:/C:/JAVAServlet/BaoCao/web/partials/sanpham.jsp</file>
+            <file>file:/C:/JAVAServlet/BaoCao/web/dangnhap.jsp</file>
+            <file>file:/C:/JAVAServlet/BaoCao/web/sanpham.jsp</file>
         </group>
     </open-files>
 </project-private>

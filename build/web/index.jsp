@@ -26,7 +26,7 @@
         <jsp:include page="includes/header.jsp" ></jsp:include>
         <div class="body-content outer-top-vs" id="top-banner-and-menu">
         <div class="container">
-        <div class="row">  
+            <div class="row">  
             <div class="col-xs-12 col-sm-12 col-md-3 sidebar">  
                 <jsp:include page="includes/sidebar.jsp" ></jsp:include> 
             </div> 
@@ -68,17 +68,22 @@
                                                 out.print("<div class='rating rateit-small'></div>");
                                                 out.print("<div class='description'></div>");
                                                 out.print("<div class='product-price'>");
-                                                    out.print("<span class='price'> " + nf.format(sp.getGia()) + " </span>");
-                                                    out.print("<span class='price-before-discount'>" + nf.format(sp.getGiaKM()) + "</span>");
+                                                    out.print("<span class='price'> " + nf.format(sp.getGia()).substring(4) + "đ </span>");
+                                                    out.print("<span class='price-before-discount'>" + nf.format(sp.getGiaKM()).substring(4) + "đ </span>");
                                                 out.print("</div>"); 
                                             out.print("</div>"); 
                                             out.print("<div class='cart clearfix animate-effect'>");
                                                 out.print("<div class='action'>");
                                                     out.print("<ul class='list-unstyled'>");
                                                         out.print("<li class='add-cart-button btn-group'>");
-                                                            out.print("<button class='btn btn-primary icon' data-toggle='dropdown' type='button'>");
-                                                                out.print("<i class='fa fa-shopping-cart'></i>");
-                                                            out.print("</button>");
+                                                            out.print("<form action='./gio-hang' method='GET'>");
+                                                                out.print("<input name='action' value='addToCart' type='hidden' />");
+                                                                out.print("<input name='amount' value='1' type='hidden' />");
+                                                                out.print("<input name='id' value='" + sp.getId() + "' type='hidden' />");
+                                                                out.print("<button class='btn btn-primary icon' type='submit'>");
+                                                                    out.print("<i class='fa fa-shopping-cart'></i>");
+                                                                out.print("</button>");
+                                                            out.print("</form>"); 
                                                             out.print("<button class='btn btn-primary cart-btn' type='button'>Add to cart</button>");
                                                         out.print("</li>");
                                                         out.print("<li class='lnk wishlist'>");

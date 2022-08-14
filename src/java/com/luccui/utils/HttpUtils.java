@@ -13,4 +13,8 @@ public class HttpUtils {
     public static String baseUrl(HttpServletRequest request) {
         return HttpUtils.Url(request);
     }
+    public static String prevUrl(HttpServletRequest request) {
+         String prevUrl = request.getRequestURL().toString();
+         return prevUrl;
+    }
 }

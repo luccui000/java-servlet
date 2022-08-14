@@ -1,7 +1,11 @@
+<%@page import="com.luccui.entities.Item"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.luccui.utils.CurrencyFormat"%>
+<%@page import="com.lucui.models.GioHang"%>
+<%@page import="com.luccui.constants.Constant"%>
 <%@page import="com.lucui.models.DanhMuc"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<header class="header-style-1">
-  <!-- ============================================== TOP MENU ============================================== -->
+<header class="header-style-1"> 
   <div class="top-bar animate-dropdown">
     <div class="container">
       <div class="header-top-inner">
@@ -13,24 +17,31 @@
               </a>
             </li> 
             <li class="header_cart hidden-xs">
-              <a href="#">
+              <a href="./gio-hang">
                 <span>Giỏ hàng</span>
               </a>
             </li>
             <li class="check">
-              <a href="#">
+              <a href="./thanh-toan">
                 <span>Thanh toán</span>
               </a>
               </span>
-            </li>
+            </li> 
             <li class="login">
-              <a href="#">
-                <span>Đăng nhập</span>
-              </a>
+                <%   
+                    if(session.getAttribute(Constant.SESSION_ID) != null) {
+                        out.print("<a href='./tai-khoan'>");
+                        out.print("<span>" + session.getAttribute(Constant.SESSION_HO_TEN) + "</span>");
+                        out.print("</a>");
+                    } else {
+                        out.print("<a href='./dang-nhap'>");
+                        out.print("<span>Đăng nhập</span>"); 
+                        out.print("</a>");
+                    }
+                %> 
             </li>
           </ul>
-        </div>
-        <!-- /.cnt-account -->
+        </div> 
         <div class="cnt-block">
           <ul class="list-unstyled list-inline">
             <li class="dropdown dropdown-small">
@@ -120,50 +131,59 @@
               <div class="items-cart-inner">
                 <div class="basket">
                   <div class="basket-item-count">
-                    <span class="count">2</span>
+                      <% GioHang giohang = (GioHang)session.getAttribute("GIO_HANG"); %>
+                      <span class="count"><%= giohang != null ? giohang.getItems().size() : 0 %></span>
                   </div>
                   <div class="total-price-basket">
                     <span class="lbl">Giỏ hàng</span>
-                    <span class="value">$4580</span>
+                    <span class="value"><%= CurrencyFormat.VND(giohang != null ? giohang.getTotal() : 0).substring(4) %> đ</span>
                     </span>
                   </div>
                 </div>
               </div>
             </a>
             <ul class="dropdown-menu">
-              <li>
-                <div class="cart-item product-summary">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <div class="image">
-                        <a href="detail.html">
-                          <img src="assets/images/products/p4.jpg" alt="">
-                        </a>
-                      </div>
-                    </div>
-                    <div class="col-xs-7">
-                      <h3 class="name">
-                        <a href="index8a95.html?page-detail">Simple Product</a>
-                      </h3>
-                      <div class="price">$600.00</div>
-                    </div>
-                    <div class="col-xs-1 action">
-                      <a href="#">
-                        <i class="fa fa-trash"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.cart-item -->
-                <div class="clearfix"></div>
+              <li> 
+                <%
+                    if(giohang != null ) {
+                        for(Map.Entry item : giohang.getItems().entrySet()) {
+                            Item it = (Item)item.getValue(); 
+                            out.print("<div class='cart-item product-summary' style='margin-bottom: 20px;'>");
+                                out.print("<div class='row'>");
+                                  out.print("<div class='col-xs-4'>");
+                                    out.print("<div class='image'>");
+                                      out.print("<a href='./chi-tiet?id='" + it.getSanPham().getId() + "'>");
+                                        out.print("<img src='" + it.getSanPham().getHinhAnh() + "' alt=''>");
+                                      out.print("</a>");
+                                    out.print("</div>");
+                                  out.print("</div>");
+                                  out.print("<div class='col-xs-7'>");
+                                    out.print("<h3 class='name'>");
+                                      out.print("<a href='./chi-tiet?id=" + it.getSanPham().getId() + "'>" + it.getSanPham().getTenSanPham() + "</a>");
+                                    out.print("</h3>");
+                                    out.print("<div class='price'>" + CurrencyFormat.VND(+ it.getSanPham().getGiaKM()).substring(4) + " đ</div>");
+                                  out.print("</div>");
+                                  out.print("<div class='col-xs-1 action'>");
+                                    out.print("<a href='#'>");
+                                      out.print("<i class='fa fa-trash'></i>");
+                                    out.print("</a>");
+                                  out.print("</div>");
+                                out.print("</div>");
+                             out.print("</div>");
+                        } 
+                     } else {
+                        out.print("Chưa có sản phẩm nào.");
+                    }
+                  %> 
+                <div class="clearfix"></div> 
                 <hr>
                 <div class="clearfix cart-total">
                   <div class="pull-right">
-                    <span class="text">Sub Total :</span>
-                    <span class='price'>$600.00</span>
+                    <span class="text">Tạm tính :</span>
+                    <span class='price'><%= CurrencyFormat.VND(giohang != null ? giohang.getTotal() : 0).substring(4) %> đ</span>
                   </div>
                   <div class="clearfix"></div>
-                  <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
+                  <a href="./gio-hang" class="btn btn-upper btn-primary btn-block m-t-20">Giỏ hàng</a>
                 </div>
                 <!-- /.cart-total-->
               </li>

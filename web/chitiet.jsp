@@ -112,10 +112,10 @@
                                         </div> 
                                     </div> 
                                     <hr />
-                                    <form action="/gio-hang" method="GET">
+                                    <form action="./gio-hang" method="GET">
                                         <div class="quantity-container">
                                             <div class="qty-count">
-                                                <input class="form-control input-qty" type="number" value="1" min="0" />
+                                                <input name="amount" class="form-control input-qty" type="number" value="1" min="0" />
                                             </div>
                                             <div class="add-btn">
                                                 <input name="action" value="addToCart" type="hidden" />
