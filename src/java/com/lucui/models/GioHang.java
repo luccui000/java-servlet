@@ -45,7 +45,7 @@ public class GioHang implements IGioHangService {
     {
         int total = 0;
         for(Item item : this.items.values()) {
-            total += item.getSanPham().GiaKM;
+            total += item.getSanPham().GiaKM * item.getSoLuong();
         }
         return total;
     }

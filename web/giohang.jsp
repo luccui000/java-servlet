@@ -84,7 +84,7 @@
                                                 <th>Tên sản phẩm</th>
                                                 <th style='width: 200px;'>Số lượng</th>
                                                 <th>Đơn giá</th>
-                                                <th>Thành tiền</th>
+                                                <th class="text-right">Thành tiền</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -107,13 +107,19 @@
                                                                  + "</form>"
                                                                 + "</td>");
                                                         out.print("<td>" + CurrencyFormat.VND(it.getSanPham().getGiaKM()).substring(4) + "đ</td>");
-                                                        out.print("<td style='font-weight: bold;'>" + CurrencyFormat.VND(it.getSanPham().getGiaKM() * it.getSoLuong()).substring(4) + "đ</td>"); 
+                                                        out.print("<td class='text-right' style='font-weight: bold;'>" + CurrencyFormat.VND(it.getSanPham().getGiaKM() * it.getSoLuong()).substring(4) + "đ</td>"); 
                                                         out.print("</tr>");
                                                     }
                                                } else {
                                                    out.print("<tr><td class='text-center' colspan='5'>Không tìm thấy sản phẩm nào trong giỏ hàng</td></tr>");
                                                }
                                             %>
+                                            <tr> 
+                                                <td colspan="5" style="text-align: right;">
+                                                    <span>Tạm tính: </span>
+                                                    <b style="font-size: 20px; color: #157ed2"><%= CurrencyFormat.VND(giohang != null ? giohang.getTotal() : 0).substring(4) %> đ</b>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                    </table> 
                                    
