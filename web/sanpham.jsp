@@ -214,40 +214,12 @@
                         fetchDanhMuc(); 
                     }) 
                     
-                    const applyFilter = () => {
-                        axios.get('http://localhost:8000/webbanhang-api/sanpham.php')
-                                .then(response => {
-                                     let sps = response.data; 
-                                     if(filters.sort.price != '') {
-                                        if(filters.sort.price == 'asc') { 
-                                            sps.sort((a, b) => {
-                                                if(a.gia_cuoi_cung < +b.gia_cuoi_cung) {
-                                                    return -1;
-                                                }
-                                                if(a.gia_cuoi_cung > +b.gia_cuoi_cung) {
-                                                    return 1;
-                                                } 
-                                                return 0;
-                                            }); 
-                                        } else {
-                                            sps.sort((a, b) => {
-                                                if(a.gia_cuoi_cung > +b.gia_cuoi_cung) {
-                                                    return -1;
-                                                }
-                                                if(a.gia_cuoi_cung < +b.gia_cuoi_cung) {
-                                                    return 1;
-                                                } 
-                                                return 0;
-                                            });  
-                                        } 
-                                    }
-                                    if(filters.sort.supplier != '') {
-                                        sps = sps.filter(el => el.nhacungcap_id == filters.sort.supplier) 
-                                    }
-                                    if(filters.sort.category != '') {
-                                        sps = sps.filter(el => el.nhacungcap_id == filters.sort.category)
-                                    }
-                                    sanphams.value = chunkArray(sps)
+                    const applyFilter = () => { 
+                        const queryString = new URLSearchParams(filters.sort).toString();
+//                        console.log(queryString)
+                        axios.get(`http://localhost:8000/webbanhang-api/sanpham.php?` + queryString)
+                                .then(response => {  
+                                    sanphams.value = chunkArray(response.data);
                             }) 
                     }
                     

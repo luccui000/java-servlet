@@ -277,13 +277,43 @@
                                                     </div> 
                                                 </div> 
                                             </div> 
+                                        </div> 
+                                    </div> 
+                                    <div class="panel panel-default checkout-step-04">
+                                        <div class="panel-heading">
+                                            <h4 class="unicase-checkout-title">
+                                                <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseFour">
+                                                    <span>4</span>
+                                                    Chọn phương thức thanh toán
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseFour" class="panel-collapse collapse address" style="height: 0px;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <label>
+                                                        <input value="offline" type="radio" name="thanh_toan" checked="true" />
+                                                        <span style="font-size: 20px; font-weight: normal; margin-left: 20px">
+                                                            Thanh toán khi nhận hàng
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="row">
+                                                    <label>
+                                                        <input value="online" type="radio"name="thanh_toan" />
+                                                        <span style="font-size: 20px; font-weight: normal; margin-left: 20px">
+                                                            Thanh toán online
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div> 
                                         </div>
                                         <div class="row" style="margin-top: 20px;">
                                             <div class="col-md-12 d-flex justify-content-end">
                                                 <button class="btn btn-primary">Thanh toán</button>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </form>
                             </div> 
                         </div>

@@ -6,6 +6,7 @@ import java.util.List;
 public interface IDonHangDAO {
     List<DonHang> all();
     boolean insert(DonHang sanpham);    
+    int insertGetId(DonHang sanpham);
     DonHang create(DonHang sanpham);
     DonHang find(int Id);
     boolean update(DonHang sanpham);

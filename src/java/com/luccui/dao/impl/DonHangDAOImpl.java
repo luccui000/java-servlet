@@ -48,8 +48,7 @@ public class DonHangDAOImpl extends AbstractDAO implements IDonHangDAO {
             stmt.setInt(10, donhang.getTrangThai());
             stmt.setDate(11, donhang.getNgayDat());
             boolean insertedRow = stmt.executeUpdate() > 0;
-            stmt.close();
-            this.conn.close();
+            stmt.close(); 
             return insertedRow;
         } catch(Exception ex) {
             return false;
@@ -91,7 +90,41 @@ public class DonHangDAOImpl extends AbstractDAO implements IDonHangDAO {
     public List<DonHang> whereDanhMuc(int value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    @Override
+    public int insertGetId(DonHang donhang) {
+        int Id = 0;
+        try { 
+            String query = "INSERT INTO DonHang (ma_don_hang, ho_ten, phi_giao_hang, dia_chi, so_dien_thoai, thanh_tien, tong_tien, phuong_thuc_thanh_toan, ghi_chu, trang_thai, ngay_dat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            
+            PreparedStatement stmt = this.conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS); 
+            stmt.setString(1, donhang.getMaDonHang());
+            stmt.setString(2, donhang.getHoTen());
+            stmt.setInt(3, donhang.getPhiGiaoHang());
+            stmt.setString(4, donhang.getDiaChi());
+            stmt.setString(5, donhang.getSoDienThoai());
+            stmt.setInt(6, donhang.getThanhTien());
+            stmt.setInt(7, donhang.getTongTien());
+            stmt.setString(8, donhang.getPhuongThucThanhToan());
+            stmt.setString(9, donhang.getGhiChu());
+            stmt.setInt(10, donhang.getTrangThai());
+            stmt.setDate(11, donhang.getNgayDat());
+            
+            stmt.executeUpdate();
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    Id = rs.getInt(1);
+                }
+                rs.close();
+            } 
+            stmt.close();  
+            System.out.print("INSERT ID: " + Id);
+            return Id;
+        } catch(Exception ex) {
+            System.out.print(ex.getMessage());
+        } finally {
+            return Id;
+        }
+    }
     @Override
     public DonHang create(DonHang donhang) {
         DonHang newDonHang = null;
@@ -112,15 +145,15 @@ public class DonHangDAOImpl extends AbstractDAO implements IDonHangDAO {
             stmt.setDate(11, donhang.getNgayDat());
             
             stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            
-            if(rs.next())
-                newDonHang = this.find(rs.getInt("id"));
-            stmt.close();
-            rs.close();
-            this.conn.close(); 
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    donhang.setId(rs.getInt(1)); 
+                }
+                rs.close();
+            } 
+            stmt.close();   
         } catch(Exception ex) {
-            return null;
+            System.out.print("[" + this.getClass().getName()  + "]:: " + ex.getMessage());
         } 
         return newDonHang;
     }

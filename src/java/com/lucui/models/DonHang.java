@@ -4,6 +4,9 @@ import java.sql.Date;
 
  
 public class DonHang extends AbstractModel { 
+    public static final String THANH_TOAN_KHI_NHAN_HANG = "Thanh toán khi nhận hàng";
+    public static final String THANH_TOAN_ONLINE = "Thanh toán online";
+    
     public String MaDonHang;
     public int NguoiDat;
     public String HoTen;

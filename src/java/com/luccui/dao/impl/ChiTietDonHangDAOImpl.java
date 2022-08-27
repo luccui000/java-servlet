@@ -24,11 +24,11 @@ public class ChiTietDonHangDAOImpl extends AbstractDAO implements IChiTietDonHan
             stmt.setInt(4, ctdh.getSoLuong());
             stmt.setInt(5, ctdh.getThanhTien());
             
-            boolean rowInserted = stmt.executeUpdate() > 0;
-            this.conn.close();
-           stmt.close();
+            boolean rowInserted = stmt.executeUpdate() > 0; 
+            stmt.close();
             return rowInserted;
         } catch(Exception ex) {
+            System.out.print(ex.getMessage());
             return false;
         }
     }
