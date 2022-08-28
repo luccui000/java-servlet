@@ -101,17 +101,17 @@ public class SanPhamDAOImpl extends AbstractDAO implements ISanPhamDAO {
     public <T> List<SanPham> where(String where, T value) {
         List<SanPham> lst = new ArrayList<SanPham>();
         try {
-            String sql = "SELECT * FROM SanPham WHERE ? = ?";
+            String sql = "SELECT * FROM SanPham WHERE " + where + " = ?";
             PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setString(1, where);
+            
             if(value instanceof String) {
-                stmt.setString(2, value.toString());
+                stmt.setString(1, value.toString());
             }
             if(value instanceof Integer) {
-                stmt.setInt(2, Integer.parseInt(value.toString()));
+                stmt.setInt(1, Integer.parseInt(value.toString()));
             }
             if(value instanceof Date) {
-                stmt.setDate(2, Date.valueOf(value.toString()));
+                stmt.setDate(1, Date.valueOf(value.toString()));
             }
             ResultSet res = stmt.executeQuery(); 
             while(res.next()) { 

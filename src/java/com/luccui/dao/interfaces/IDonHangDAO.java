@@ -9,6 +9,7 @@ public interface IDonHangDAO {
     int insertGetId(DonHang sanpham);
     DonHang create(DonHang sanpham);
     DonHang find(int Id);
+    List<DonHang> findByUser(int Id);
     boolean update(DonHang sanpham);
     boolean delete(int Id);
     <T> List<DonHang> where(String where, T value);

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DonHangMapping {
     // String HoTen, int PhiGiaoHang, String DiaChi, String SoDienThoai, int ThanhTien, int TongTien, String PhuongThucThanhToan, String GhiChu
     public static DonHang make(ResultSet res) throws SQLException { 
-        return new DonHang(
+        DonHang dh = new DonHang(
             res.getString("ho_ten"),            
             res.getInt("phi_giao_hang"),
             res.getString("dia_chi"),
@@ -17,5 +17,10 @@ public class DonHangMapping {
             res.getString("phuong_thuc_thanh_toan"),
             res.getString("ghi_chu")
         );
+        dh.setMaDonHang(res.getString("ma_don_hang"));        
+        dh.setNgayDat(res.getDate("ngay_dat"));
+        dh.setTrangThai(res.getInt("trang_thai"));
+
+        return dh;
     }
 }

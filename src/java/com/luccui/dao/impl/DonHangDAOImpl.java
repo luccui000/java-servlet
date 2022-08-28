@@ -14,9 +14,9 @@ public class DonHangDAOImpl extends AbstractDAO implements IDonHangDAO {
 
     @Override
     public List<DonHang> all() {
-    List<DonHang> lst = new ArrayList<DonHang>(); 
+        List<DonHang> lst = new ArrayList<DonHang>(); 
         try {
-            String sql = "SELECT * FROM SanPham"; 
+            String sql = "SELECT * FROM DonHang"; 
             Statement stmt = this.conn.createStatement();
             ResultSet res = stmt.executeQuery(sql); 
             while (res.next()) {
@@ -156,6 +156,28 @@ public class DonHangDAOImpl extends AbstractDAO implements IDonHangDAO {
             System.out.print("[" + this.getClass().getName()  + "]:: " + ex.getMessage());
         } 
         return newDonHang;
+    }
+
+    @Override
+    public List<DonHang> findByUser(int Id) {
+        List<DonHang> lst = new ArrayList<DonHang>();
+        
+        try {
+            String sql = "SELECT * FROM DonHang WHERE nguoi_dat = ?"; 
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setInt(1, Id);
+            ResultSet res = stmt.executeQuery();
+            while (res.next()) {
+                 
+                 lst.add(DonHangMapping.make(res));
+                 System.out.print(res.getString("ma_don_hang"));
+            }
+            res.close();
+            stmt.close(); 
+        } catch(SQLException ex) {
+            System.out.print("[" + this.getClass().getName() + "]::" + ex.getMessage());
+        }
+        return lst;
     }
     
 }
