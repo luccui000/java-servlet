@@ -14,4 +14,5 @@ public interface IDonHangDAO {
     boolean delete(int Id);
     <T> List<DonHang> where(String where, T value);
     List<DonHang> whereDanhMuc(int value);
+    boolean updateStatus(int id, int TrangThai);
 }

@@ -4,6 +4,15 @@ import com.lucui.models.ChiTietDonHang;
 import java.sql.PreparedStatement;
 import java.util.List;
 import com.luccui.dao.interfaces.IChiTietDonHangDAO;
+import com.luccui.mappings.ChiTietDonHangMapping;
+import com.luccui.mappings.TaiKhoanMapping;
+import com.lucui.models.TaiKhoan;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ChiTietDonHangDAOImpl extends AbstractDAO implements IChiTietDonHangDAO {
 
@@ -35,7 +44,7 @@ public class ChiTietDonHangDAOImpl extends AbstractDAO implements IChiTietDonHan
 
     @Override
     public ChiTietDonHang find(int Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.where("id", Id).get(0);
     }
 
     @Override
@@ -50,7 +59,29 @@ public class ChiTietDonHangDAOImpl extends AbstractDAO implements IChiTietDonHan
 
     @Override
     public <T> List<ChiTietDonHang> where(String where, T value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<ChiTietDonHang> lst = new ArrayList<ChiTietDonHang>();
+        try {
+            String sql = "SELECT * FROM chitiet_donhang WHERE " + where + " = ?";
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+             
+            if(value instanceof String) {
+                stmt.setString(1, value.toString());
+            }
+            if(value instanceof Integer) {
+                stmt.setInt(1, Integer.parseInt(value.toString()));
+            }
+            if(value instanceof Date) {
+                stmt.setDate(1, Date.valueOf(value.toString()));
+            }
+            System.out.println(stmt.toString());
+            ResultSet res = stmt.executeQuery(); 
+            while(res.next()) { 
+                lst.add((new ChiTietDonHangMapping()).mapping(res));
+            }
+        } catch (SQLException ex) {  
+            Logger.getLogger(SanPhamDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lst;
     } 
     
 }

@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DonHangDAOImpl extends AbstractDAO implements IDonHangDAO {
 
@@ -16,7 +18,7 @@ public class DonHangDAOImpl extends AbstractDAO implements IDonHangDAO {
     public List<DonHang> all() {
         List<DonHang> lst = new ArrayList<DonHang>(); 
         try {
-            String sql = "SELECT * FROM DonHang"; 
+            String sql = "SELECT * FROM DonHang Order by trang_thai asc"; 
             Statement stmt = this.conn.createStatement();
             ResultSet res = stmt.executeQuery(sql); 
             while (res.next()) {
@@ -62,7 +64,7 @@ public class DonHangDAOImpl extends AbstractDAO implements IDonHangDAO {
             String query = "SELECT * FROM donhang WHERE id = ?"; 
             PreparedStatement stmt = this.conn.prepareStatement(query);
             stmt.setInt(1, Id);
-            ResultSet rs = stmt.getGeneratedKeys();
+            ResultSet rs = stmt.executeQuery();
             if(rs.next())
                 donhang = DonHangMapping.make(rs);
         } catch(Exception ex) {
@@ -70,7 +72,7 @@ public class DonHangDAOImpl extends AbstractDAO implements IDonHangDAO {
         }
         return donhang;
     }
-
+    
     @Override
     public boolean update(DonHang sanpham) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -178,6 +180,25 @@ public class DonHangDAOImpl extends AbstractDAO implements IDonHangDAO {
             System.out.print("[" + this.getClass().getName() + "]::" + ex.getMessage());
         }
         return lst;
+    }
+
+    @Override
+    public boolean updateStatus(int Id, int TrangThai) {
+        String query = "UPDATE donhang set trang_thai = ? where id = ?";
+        PreparedStatement stmt;
+        try {
+            stmt = this.conn.prepareStatement(query);
+            stmt.setInt(1, TrangThai);
+            stmt.setInt(2, Id);
+            
+            boolean updated = stmt.executeUpdate() > 0;
+            stmt.close();
+            
+            return updated;
+        } catch (SQLException ex) {
+            Logger.getLogger(DonHangDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } 
     }
     
 }

@@ -6,6 +6,7 @@ public class ChiTietDonHang extends AbstractModel {
     private int SoLuong;
     private int DonGia;
     private int ThanhTien;
+    private String TenSanPham;
     
     public ChiTietDonHang() {}
     
@@ -62,6 +63,15 @@ public class ChiTietDonHang extends AbstractModel {
         this.ThanhTien = this.DonGia * this.SoLuong;
     }
 
+    public String getTenSanPham() {
+        return TenSanPham;
+    }
+
+    public void setTenSanPham(String TenSanPham) {
+        this.TenSanPham = TenSanPham;
+    }
+
+    
     @Override
     public String toString() {
         return "ChiTietDonHang{" + "DonHangId=" + DonHangId + ", SanPhamId=" + SanPhamId + ", SoLuong=" + SoLuong + ", DonGia=" + DonGia + ", ThanhTien=" + ThanhTien + '}';

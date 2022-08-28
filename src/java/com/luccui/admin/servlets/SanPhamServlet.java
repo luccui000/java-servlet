@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
 @WebServlet(name = "SanPhamServlet", urlPatterns = {"/admin/san-pham"})
-public class SanPhamServlet extends HttpServlet { 
+public class SanPhamServlet extends BaseServlet { 
     private ISanPhamDAO sanphamDAO;
     private INhaCungCapDAO nhacungcapDAO;
     private IDanhMucDAO danhmucDAO;

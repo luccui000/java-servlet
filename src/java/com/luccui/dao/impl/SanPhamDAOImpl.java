@@ -137,4 +137,22 @@ public class SanPhamDAOImpl extends AbstractDAO implements ISanPhamDAO {
         }
         return lst;
     }
+
+    @Override
+    public List<SanPham> top10() {
+        List<SanPham> lst = new ArrayList<SanPham>(); 
+        try {
+            String sql = "SELECT * FROM SanPham WHERE la_san_pham_noi_bat = 1 ORDER By gia_cuoi_cung desc"; 
+            Statement stmt = this.conn.createStatement();
+            ResultSet res = stmt.executeQuery(sql); 
+            while (res.next()) { 
+                lst.add(SanPhamMapping.make(res)); 
+            }
+            res.close();
+            stmt.close(); 
+        } catch(SQLException ex) {
+            
+        }
+        return lst;
+    }
 }

@@ -17,6 +17,7 @@ public class DonHangMapping {
             res.getString("phuong_thuc_thanh_toan"),
             res.getString("ghi_chu")
         );
+        dh.setId(res.getInt("id"));
         dh.setMaDonHang(res.getString("ma_don_hang"));        
         dh.setNgayDat(res.getDate("ngay_dat"));
         dh.setTrangThai(res.getInt("trang_thai"));

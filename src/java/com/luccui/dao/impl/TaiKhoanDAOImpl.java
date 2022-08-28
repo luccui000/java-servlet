@@ -134,7 +134,24 @@ public class TaiKhoanDAOImpl extends AbstractDAO implements ITaiKhoanDAO, ILogin
         }
         return taikhoan;
     }
-
+     
+    public TaiKhoan loginAdmin(String email, String password) { 
+        TaiKhoan taikhoan = null;
+        try {
+            password = Hash.make(password);
+            String sql = "SELECT * FROM TaiKhoan WHERE email = ? and mat_khau = ? AND quyen = 1";
+            PreparedStatement stmt = this.conn.prepareStatement(sql); 
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+            ResultSet res = stmt.executeQuery();
+            if(res.next()) {
+                taikhoan = TaiKhoanMapping.make(res);
+            }  
+        } catch (SQLException ex) {  
+            Logger.getLogger(SanPhamDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return taikhoan;
+    }
     @Override
     public boolean register(String Email, String HoTen, String SoDienThoai, String MatKhau) {
         TaiKhoan taikhoan = new TaiKhoan();

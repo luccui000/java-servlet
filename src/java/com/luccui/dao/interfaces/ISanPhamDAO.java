@@ -11,4 +11,5 @@ public interface ISanPhamDAO {
     boolean delete(int Id);
     <T> List<SanPham> where(String where, T value);
     List<SanPham> whereDanhMuc(int value);
+    List<SanPham> top10();
 }
